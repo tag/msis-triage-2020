@@ -38,11 +38,37 @@
           1 of 2
         </div>
         <div class="col-6">
-          <h1>Center, wider column.</h1>
-          <p>My form will go here.</p>
+          <h1>New Visit</h1>
+          <p><form>
+  <div class="form-group">
+    <label for="ptName">Example Select</label>
+    <select class="form-control" id="ptName">
+      <option value="1">Dayton, Keith</option>
+      <option value="2">Bruce, Alex</option>
+      <option value="3">Pillarella, Luke</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="visitDate">Visit Date</label>
+    <input type="text" class="form-control" id="visitDate" placeholder="Date">
+  </div>
+  <div class="form-group">
+    <label for="visitPriority">Priority</label>
+    <select class="form-control" id="visitPriority">
+      <option value="30">Critical</option>
+      <option value="20">Urgent</option>
+      <option value="10">Non-Emergency</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="visitSymptoms">Symptoms</label>
+    <textarea class="form-control" id="visitSymptoms" rows="5"></textarea>
+  </div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form></p>
         </div>
         <div class="col">
-          3 of 3
+          <h1>Triage Queue</h1>
         </div>
       </div>
     </div>
