@@ -36,8 +36,21 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col cardPane cardPaneLeft">
-          1 of 2
+          <h3>List of all patients</h3>
+          <div class="patientCard" data-id="1">
+            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
+            <span class="birthDate float-right">1980</span>
+          </div>
+          <div class="patientCard" data-id="3">
+            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
+            <span class="birthDate text-right">1978</span>
+          </div>
+          <div class="patientCard" data-id="2">
+            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
+            <span class="birthDate text-right">1981</span>
+          </div>
         </div>
+
         <div class="col-6">
           <h1>New Visit</h1>
           <form>
@@ -47,7 +60,6 @@
                 <option value="1">Dayton, Keith</option>
                 <option value="2">Prabhakar, Bipin</option>
                 <option value="3">Gregory, Tom</option>
-
               </select>
             </div>
 
@@ -73,7 +85,19 @@
         </form>
         </div>
         <div class="col cardPane cardPaneRight">
-          3 of 3
+          <h3>Waiting patients</h3>
+          <div class="patientCard triageCritical" data-patient_id="3" data-visit_id="520">
+            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
+            <span class="birthDate text-right">1978</span>
+          </div>
+          <div class="patientCard triageUrgent" data-patient_id="1" data-visit_id="501">
+            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
+            <span class="birthDate float-right">1980</span>
+          </div>
+          <div class="patientCard triageMinor" data-patient_id="3" data-visit_id="520">
+            <span class="lastName">Prabhakar</span>, <span clas="firstName">Bipin</span>
+            <span class="birthDate text-right">1981</span>
+          </div>
         </div>
       </div>
     </div>
