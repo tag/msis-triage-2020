@@ -11,9 +11,9 @@ var data = {
 
 console.log(data[0]);
 
-data.forEach(function(item) => {
+data.forEach(function(item){
   console.log(item);
 
   //get left hand pane
-  
+
 });
