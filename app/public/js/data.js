@@ -1,12 +1,12 @@
 var data = {
-  {
-    "id": 31;
-    "name": Michael;
-  }
-  {
-    "id": 32;
-    "name": Kendel;
-  }
+  [
+    "id": 31,
+    "name": "Michael";
+  ]
+  [
+    "id": 32,
+    "name": "Kendel";
+  ]
 }
 
 console.log(data[0]);
