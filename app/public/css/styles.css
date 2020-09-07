@@ -1,24 +1,36 @@
 html,
 body {
-  background-color: cornsilk;
-  color: rgb(0,20,120);
+  background-color: white;
+  color: #333;
 }
 
 nav,
 .navbar {
-  background-color: rgb(0,20,120);
-  color: cornsilk;
+  background-color: rgb(20,40,180);
+  color: #eee;
 }
 
+.navbar a.navbar-brand,
+.navbar a.nav-link,
+.navbar a.nav-link:visited {
+  color: #eee;
+}
+
+.navbar a.nav-link:hover {
+  background-color: rgb(50,80,220);
+  color: #fff;
+}
+
+
 .cardPane {
-  background-color: #ddd;
+  background-color: #eee;
   color: black;
 }
 
 .cardPaneLeft{
-  border-right: 1px solid black;
+  border-right: 1px solid rgb(77,55,41);
 }
 
 .cardPaneRight{
-  border-left: 1px solid black;
+  border-left: 1px solid rgb(77,55,41);
 }
