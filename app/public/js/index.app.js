@@ -1,30 +1,14 @@
-// console.log("I am in index.app.js");
-//
-// // console.lg("Error");
-//
-//
-// var el = document.getElementById("ptName");
-//
-// var arr = document.getElementsByClassName("patientCard");
-//
-// var arr2 = $(".patientCard.triageCritical");
-//
-// console.log(arr2);
-
-
-var schools = ["IU", "Arkansas", "Michigan", "Wyoming"];
-
-console.log( schools.sort() );
-
-var comparator = function (a, b) {
-  if (a == b) {
-    return 0;
+var app = new Vue({
+  el: '#cardPaneLeft',
+  data: {
+    message: 'Hello Vue!',
+    onePatient: {
+      "patientGuid": "SOME-REALLY-LONG-1234",
+      "firstName": "Sylvia",
+      "lastName": "Hernandez",
+      "dob": "2012-09-01",
+      "sexAtBirth": "F",
+      "priority": "critical"
+    }
   }
-  if (a == "IU") {return -1}
-  if (b == "IU") {return 1}
-
-  if (a < b) {return -1}
-  return 1
-}
-
-console.log( schools.sort(comparator) );
+})
