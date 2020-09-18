@@ -36,26 +36,16 @@
     <div class="container-fluid">
       <div class="row">
         <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
-          <h3>List of all patients</h3>
-            <p>{{ message }}</p>
-            <p>{{ 1 + 2 * 3 }}</p>
-            <div class="patientCard" data-id="3">
-              <span class="lastName">{{ onePatient.lastName }}</span>,
-              <span clas="firstName">{{ onePatient.firstName }}</span>
-              <span class="birthDate text-right">{{ onePatient.dob }}</span>
-            </div>
-          <!-- <div class="patientCard" data-id="1">
-            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
-            <span class="birthDate float-right">1980</span>
+
+          <h3 v-bind:title="message">List of all patients</h3>
+
+          <div class="patientCard" v-for="pt in ptList">
+            <span class="lastName">{{ pt.lastName }}</span>,
+            <span clas="firstName">{{ pt.firstName }}</span>
+            <span class="birthDate float-right">{{ pt.dob }}</span>
           </div>
-          <div class="patientCard" data-id="3">
-            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
-            <span class="birthDate text-right">1978</span>
-          </div>
-          <div class="patientCard" data-id="2">
-            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
-            <span class="birthDate text-right">1981</span>
-          </div> -->
+
+          <button v-on:click="yell()">Click Me!</button>
         </div>
 
         <div class="col-6">
@@ -117,8 +107,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/index.app.js"></script>
-    <!-- <script src="js/data.js"></script> -->
   </body>
 </html>
