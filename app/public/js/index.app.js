@@ -4,7 +4,9 @@ var app = new Vue({
     message: 'Hello Vue!',
     ptList: [],
     user: {}
+    times: 0
   },
+
   created() {
     //Do all my fetch() requests
     fetch("dummy/pt-list.php")
@@ -12,7 +14,18 @@ var app = new Vue({
     .then( json => {
       console.log(jsonn)}
     );
+  },
+
+  methods: {
+    yell() {
+      this.times = this.times +1
+      var msg = "Clicked" + this.times +" times";
+      alert(msg);
+    }
+
   }
+
+
 
 //     onePatient: {
 //       "patientGuid": "SOME-REALLY-LONG-1234",
