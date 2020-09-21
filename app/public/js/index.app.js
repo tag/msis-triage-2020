@@ -23,7 +23,7 @@ var app = new Vue({
         sexAtBirth: ""
       }
     },
-    handleNewPt( evt ){
+    handleNewPtForm( evt ){
       evt.preventDefault();  // Redundant w/ Vue's submit.prevent
       /*
       //TODO: Hook to API
@@ -40,7 +40,7 @@ var app = new Vue({
 
       this.newPtForm = this.newPtData();
     },
-    submitTriageForm( evt ) {
+    handleTriageForm( evt ) {
       console.log("Form submitted!");
 
       this.triageForm.pt = this.activePt;

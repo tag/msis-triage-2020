@@ -36,7 +36,7 @@
     <div class="container-fluid">
       <div class="row" id="triagePage">
         <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
-          <form method="post" v-on:submit.prevent="handleNewPt">
+          <form method="post" v-on:submit.prevent="handleNewPtForm">
             <h3>Create New Patient Record</h3>
 
             <div class="form-group">
@@ -76,7 +76,7 @@
 
         <div class="col-6">
           <h1>New Visit</h1>
-          <form v-on:submit.prevent="submitTriageForm">
+          <form v-on:submit.prevent="handleTriageForm">
             <div class="form-group">
               <label for="ptName">Patient Name</label>
               <input class="form-control" id="ptName" v-bind:value="activePtName" readonly>
