@@ -1,14 +1,34 @@
 var app = new Vue({
-  el: '#cardPaneLeft',
+  el: '#triagePage',
   data: {
-    message: 'Hello Vue!',
-    onePatient: {
-      "patientGuid": "SOME-REALLY-LONG-1234",
-      "firstName": "Sylvia",
-      "lastName": "Hernandez",
-      "dob": "2012-09-01",
-      "sexAtBirth": "F",
-      "priority": "critical"
+    ptList: [],
+    activePt: null,
+    triageForm: {
+      priority: null,
+      symptoms: ''
     }
+  },
+  computed: {
+    activePtName() {
+      return this.activePt ? this.activePt.lastName + ', ' + this.activePt.firstName : ''
+    }
+  },
+  methods: {
+    submitTriageForm( evt ) {
+      console.log("Form submitted!");
+
+      this.triageForm.pt = this.activePt;
+      console.log(this.triageForm);
+
+    }
+  },
+  created() {
+    fetch("dummy/pt-list.php")
+    .then( response => response.json() )
+    .then( json => {
+      this.ptList = json;
+
+      console.log(json)}
+    );
   }
 })
