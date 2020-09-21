@@ -6,7 +6,8 @@ var app = new Vue({
     triageForm: {
       priority: null,
       symptoms: ''
-    }
+    },
+    newPtForm: {}
   },
   computed: {
     activePtName() {
@@ -14,6 +15,31 @@ var app = new Vue({
     }
   },
   methods: {
+    newPtData() {
+      return {
+        firstName: "",
+        lastName: "",
+        dob: "",
+        sexAtBirth: ""
+      }
+    },
+    handleNewPt( evt ){
+      evt.preventDefault();  // Redundant w/ Vue's submit.prevent
+      /*
+      //TODO: Hook to API
+      fetch( url, {
+       method: "post",
+       data: data
+      })
+      */
+
+      console.log("Creating...!");
+      console.log(this.newPtForm);
+
+      this.ptList.push(this.newPtForm);
+
+      this.newPtForm = this.newPtData();
+    },
     submitTriageForm( evt ) {
       console.log("Form submitted!");
 
@@ -30,5 +56,6 @@ var app = new Vue({
 
       console.log(json)}
     );
+    this.newPtForm = this.newPtData();
   }
 })
