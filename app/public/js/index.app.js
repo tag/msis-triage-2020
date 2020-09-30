@@ -1,27 +1,51 @@
 var app = new Vue({
-  el: '#cardPaneLeft',
+  el: '#triagePage',
   data: {
-    message: 'Hello Vue!',
     ptList: [],
-    user: {}
-    times: 0
+    activePt: null,
+    triageForm: {
+      priority: null,
+      symptoms: ''
+    },
+    newPtForm: {
+      f
+    }
   },
+  computed: {
+    activePtName() {
+      return this.activePt ? this.activePt.lastName + '. ' + this.activePt.firstName : ''
+    }
+  }
 
+  methods: {
+    submitTriageForm( evt ) {
+      console.log("Form submitted");
+      console.log(this.activePt);
+    },
+    newPatient() {
+      return {
+        firstName: "",
+        lastName: "",
+        dob: "",
+        sexAtBirth: ""
+      }
+    },
+    handleNewPatient( evt ) {
+      evt.preventDefault(); // Redundant w/ Vue's 'v-on:submit.p...'
+      console.log("Creating...");
+      console.log(this_newPtForm);
+    }
+  };
   created() {
     //Do all my fetch() requests
     fetch("dummy/pt-list.php")
     .then( response => response.json() )
     .then( json => {
+      this.ptList = json;
+
       console.log(jsonn)}
     );
   },
-
-  methods: {
-    yell() {
-      this.times = this.times +1
-      var msg = "Clicked" + this.times +" times";
-      alert(msg);
-    }
 
   }
 
