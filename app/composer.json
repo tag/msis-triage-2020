@@ -1,0 +1,14 @@
+{
+    "name": "iu-msis/project-triage-2020",
+    "description": "An in-class example project",
+    "license": "private",
+    "authors": [{
+        "name": "Tom Gregory"
+    }],
+    "require": {
+      "ramsey/uuid": "^4.1"
+    },
+    "autoload": {
+        "classmap": ["class/DbConnection.php"]
+    }
+}
