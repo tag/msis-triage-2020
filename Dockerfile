@@ -4,6 +4,12 @@ LABEL maintainer="Tom Gregory"
 
 COPY app /srv/app
 
+# PHP configuration
+COPY docker/php/php.ini /usr/local/etc/php/php.ini
+
+# Apache configuration
+COPY docker/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
+
 # Install Composer  (http://getcomposer.org)
 # Fall 2019: COPY docker/composer-installer.sh /usr/local/bin/composer-installer
 # Fall 2020, w/ curl
@@ -26,8 +32,6 @@ RUN apt-get -yqq update \
     # && mv composer.phar /usr/local/bin/composer \
     # && chmod +x /usr/local/bin/composer \
 
-COPY ./app /srv/app
-
 # Run Composer to install dependancies
 WORKDIR /srv/app/
 RUN composer install \
@@ -35,9 +39,3 @@ RUN composer install \
     --no-plugins \
     --no-scripts \
     --prefer-dist
-
-# PHP configuration
-COPY docker/php/php.ini /usr/local/etc/php/php.ini
-
-# Apache configuration
-COPY docker/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
