@@ -34,16 +34,48 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" id="triagePage">
         <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
+          <form method="post" v-on:submit="handleNewPatient">
+            <h3>Create New Pt Record</h3>
+              <div class="form-group">
+                <label for="newPtFirstName">First Name</label>
+                <input type="text" class="form-control" id="newPtFirstName" placeholder="Jane">
+              <div class="form-group">
+                <label for="newPtLasstName">Last Name</label>
+                <input type="text" class="form-control" id="newPtLastName" placeholder="Jones">
+              <div class="form-group">
+                <label for="newPtDob">Birth Date</label>
+                <input type="text" class="form-control" id="newPtDob" placeholder="Jane">
+              <div class="form-group">
+                <label for="newPtSex">Sex at Birth</label>
+                <input type="form-control" class="form-control" id="newPtSex" placeholder="Jane">
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+              <button type="submit" class="btn btn-primary">Create</button>
           <h3>List of all patients</h3>
-            <p>{{ message }}</p>
-            <p>{{ 1 + 2 * 3 }}</p>
-            <div class="patientCard" data-id="3">
-              <span class="lastName">{{ onePatient.lastName }}</span>,
-              <span clas="firstName">{{ onePatient.firstName }}</span>
-              <span class="birthDate text-right">{{ onePatient.dob }}</span>
+            <div class="patientCard" v-for="pt in ptList" v-on click="activPt = pt">
+              <span class="lastName">{{ pt.lastName }}</span>,
+              <span clas="firstName">{{ pt.firstName }}</span>
+              <span class="birthDate float-right">{{ pt.dob }}</span>
             </div>
+
+            <!-- <div class="container-fluid">
+              <div class="row">
+                <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
+                  <h3>List of all patients</h3>
+                    <p>{{ message }}</p>
+                    <p>{{ 1 + 2 * 3 }}</p>
+                    <div class="patientCard" data-id="3">
+                      <span class="lastName">{{ onePatient.lastName }}</span>,
+                      <span clas="firstName">{{ onePatient.firstName }}</span>
+                      <span class="birthDate text-right">{{ onePatient.dob }}</span>
+                    </div>
+
+                    <button v-on:click="yell('foo')">Click Me</button>
+
+                    <button v-on:click="yell()">Click Me</button> -->
+
           <!-- <div class="patientCard" data-id="1">
             <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
             <span class="birthDate float-right">1980</span>
@@ -60,7 +92,7 @@
 
         <div class="col-6">
           <h1>New Visit</h1>
-          <form>
+          <form v-on:submit="submitTriageForm">
             <div class="form-group">
               <label for="ptName">Patient Name</label>
               <select class="form-control" id="ptName">
