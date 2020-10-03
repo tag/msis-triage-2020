@@ -1,4 +1,4 @@
-USE triage;
+USE msis_triage;
 
 CREATE TABLE Patient (
     patientGuid VARCHAR(64) PRIMARY KEY,
