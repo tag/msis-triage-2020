@@ -1,24 +1,51 @@
 var app = new Vue({
-  el: '#cardPaneLeft',
+  el: '#triagePage',
   data: {
-    message: 'Hello Vue!',
-    onePt: {
-      "patientGuid": "SOME-REALLY-LONG-1234",
-      "firstName": "Sylvia",
-      "lastName": "Hernandez",
-      "dob": "2012-09-01",
-      "sexAtBirth": "F",
-      "priority": "critical"
-    },
     ptList: [],
-    user: {},
-    times: 0
+    activePt: null,
+    triageForm: {
+      priority: null,
+      symptoms: ''
+    },
+    newPtForm: {}
+  },
+  computed: {
+    activePtName() {
+      return this.activePt ? this.activePt.lastName + ', ' + this.activePt.firstName : ''
+    }
   },
   methods: {
-    yell(msg) {
-      this.times = this.times + 1;
-      var msg = "Clicked " +this.times+ " times";
-      alert(msg);
+    newPtData() {
+      return {
+        firstName: "",
+        lastName: "",
+        dob: "",
+        sexAtBirth: ""
+      }
+    },
+    handleNewPtForm( evt ){
+      evt.preventDefault();  // Redundant w/ Vue's submit.prevent
+      /*
+      //TODO: Hook to API
+      fetch( url, {
+       method: "post",
+       data: data
+      })
+      */
+
+      console.log("Creating...!");
+      console.log(this.newPtForm);
+
+      this.ptList.push(this.newPtForm);
+
+      this.newPtForm = this.newPtData();
+    },
+    handleTriageForm( evt ) {
+      console.log("Form submitted!");
+
+      this.triageForm.pt = this.activePt;
+      console.log(this.triageForm);
+
     }
   },
   created() {
@@ -29,5 +56,6 @@ var app = new Vue({
 
       console.log(json)}
     );
+    this.newPtForm = this.newPtData();
   }
 })
