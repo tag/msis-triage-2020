@@ -36,6 +36,32 @@
     <div class="container-fluid">
       <div class="row" id="triagePage">
         <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
+          <form method="post" v-on:submit.prevent="handleNewPtForm">
+            <h3>Create New Patient Record</h3>
+
+            <div class="form-group">
+            <label for="newPtFirstName">First Name</label>
+            <input type="text" v-model="newPtForm.firstName" class="form-control" id="newPtFirstName" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label for="newPtLastName">Visit Date</label>
+            <input type="text" v-model="newPtForm.lastName" class="form-control" id="newPtLastName" placeholder="Doe">
+          </div>
+          <div class="form-group">
+            <label for="newPtDob">DOB</label>
+            <input type="text" v-model="newPtForm.dob" class="form-control" id="newPtDob" placeholder="2020-01-02">
+          </div>
+          <div class="form-group">
+            <label for="newPtSexAtBirth">Sex at Birth</label>
+            <select class="form-control" v-model="newPtForm.sexAtBirth" id="newPtSexAtBirth">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other/Unknown</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+
+          </form>
 
           <h3>List of all patients</h3>
 
@@ -50,7 +76,7 @@
 
         <div class="col-6">
           <h1>New Visit</h1>
-          <form v-on:submit.prevent="submitTriageForm">
+          <form v-on:submit.prevent="handleTriageForm">
             <div class="form-group">
               <label for="ptName">Patient Name</label>
               <input class="form-control" id="ptName" v-bind:value="activePtName" readonly>
