@@ -23,8 +23,10 @@ var app = new Vue({
         sexAtBirth: ""
       }
     },
-    handleNewPtForm( evt ){
+    handleNewPtForm( evt ) {
       // evt.preventDefault();  // Redundant w/ Vue's submit.prevent
+
+      // TODO: Validate the data!
 
       fetch('api/records/post.php', {
         method:'POST',
