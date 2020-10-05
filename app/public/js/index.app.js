@@ -7,22 +7,15 @@ var app = new Vue({
       priority: null,
       symptoms: ''
     },
-    newPtForm: {
-      f
-    }
+    newPtForm: {}
   },
   computed: {
     activePtName() {
-      return this.activePt ? this.activePt.lastName + '. ' + this.activePt.firstName : ''
+      return this.activePt ? this.activePt.lastName + ', ' + this.activePt.firstName : ''
     }
-  }
-
+  },
   methods: {
-    submitTriageForm( evt ) {
-      console.log("Form submitted");
-      console.log(this.activePt);
-    },
-    newPatient() {
+    newPtData() {
       return {
         firstName: "",
         lastName: "",
@@ -30,23 +23,40 @@ var app = new Vue({
         sexAtBirth: ""
       }
     },
-    handleNewPatient( evt ) {
-      evt.preventDefault(); // Redundant w/ Vue's 'v-on:submit.p...'
-      console.log("Creating...");
-      console.log(this_newPtForm);
+    handleNewPtForm( evt ){
+      evt.preventDefault();  // Redundant w/ Vue's submit.prevent
+      /*
+      //TODO: Hook to API
+      fetch( url, {
+       method: "post",
+       data: data
+      })
+      */
+
+      console.log("Creating...!");
+      console.log(this.newPtForm);
+
+      this.ptList.push(this.newPtForm);
+
+      this.newPtForm = this.newPtData();
+    },
+    handleTriageForm( evt ) {
+      console.log("Form submitted!");
+
+      this.triageForm.pt = this.activePt;
+      console.log(this.triageForm);
+
     }
-  };
+  },
   created() {
-    //Do all my fetch() requests
     fetch("dummy/pt-list.php")
     .then( response => response.json() )
     .then( json => {
       this.ptList = json;
 
-      console.log(jsonn)}
+      console.log(json)}
     );
-  },
-
+    this.newPtForm = this.newPtData();
   }
 
 
