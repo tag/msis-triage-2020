@@ -8,61 +8,116 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- my custom CSS goes here -->
+    <link rel="stylesheet" href="css/styles.css">
 
-    <title>Hello, world!</title>
+    <title>Triage — Triage App</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-md">
+      <a class="navbar-brand" href="#">Triage App</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="page_two.html">Manage Patients</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link" href="#">Finish Visits</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col myLeftCol">
-          1 of 2
+    <div class="container-fluid">
+      <div class="row" id="triagePage">
+        <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
+          <form method="post" v-on:submit.prevent="handleNewPtForm">
+            <h3>Create New Patient Record</h3>
+
+            <div class="form-group">
+            <label for="newPtFirstName">First Name</label>
+            <input type="text" v-model="newPtForm.firstName" class="form-control" id="newPtFirstName" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label for="newPtLastName">Last Name</label>
+            <input type="text" v-model="newPtForm.lastName" class="form-control" id="newPtLastName" placeholder="Doe">
+          </div>
+          <div class="form-group">
+            <label for="newPtDob">DOB</label>
+            <input type="text" v-model="newPtForm.dob" class="form-control" id="newPtDob" placeholder="2020-01-02">
+          </div>
+          <div class="form-group">
+            <label for="newPtSexAtBirth">Sex at Birth</label>
+            <select class="form-control" v-model="newPtForm.sexAtBirth" id="newPtSexAtBirth">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other/Unknown</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+
+          </form>
+
+          <h3>List of all patients</h3>
+
+          <div class="patientCard" v-for="pt in ptList" v-on:click="activePt = pt">
+            <span class="lastName">{{ pt.lastName }}</span>,
+            <span clas="firstName">{{ pt.firstName }}</span>
+            <span class="birthDate float-right">{{ pt.dob }}</span>
+          </div>
+
+          <!-- <button v-on:click="yell()">Click Me!</button> -->
         </div>
+
         <div class="col-6">
           <h1>New Visit</h1>
-          <form>
+          <form v-on:submit.prevent="handleTriageForm">
             <div class="form-group">
-              <label for="exampleFormControlInput1">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="ptName">Patient Name</label>
+              <input class="form-control" id="ptName" v-bind:value="activePtName" readonly>
+
             </div>
-            <div class="form-group">
-              <label for="visitPriority">Priority</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option value="30">Critical</option>
-                <option value="20">Urgent</option>
-                <option value="10">Non-urgent</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="visitSymptoms">Symptoms</label>
-              <textarea class="form-control" id="visitSymptoms" rows="5">
-              </textarea>
-            </div>
-          </form>
+
+          <div class="form-group">
+            <label for="visitDate">Visit Date</label>
+            <input type="text" class="form-control" id="visitDate" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label for="visitPriority">Priority</label>
+            <select class="form-control" id="visitPriority" v-model="triageForm.priority">
+              <option value="30">Critical</option>
+              <option value="20">Urgent</option>
+              <option value="10">Non-urgent</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="visitSymptoms">Patient Symptoms</label>
+            <textarea class="form-control" id="visitSymptoms" rows="5" v-model="triageForm.symptoms"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
         </div>
-        <div class="col">
-          3 of 3
+        <div class="col cardPane cardPaneRight">
+          <h3>Waiting patients</h3>
+          <div class="patientCard triageCritical" data-patient_id="3" data-visit_id="520">
+            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
+            <span class="birthDate text-right">1978</span>
+          </div>
+          <div class="patientCard triageUrgent" data-patient_id="1" data-visit_id="501">
+            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
+            <span class="birthDate float-right">1980</span>
+          </div>
+          <div class="patientCard triageMinor" data-patient_id="3" data-visit_id="520">
+            <span class="lastName">Prabhakar</span>, <span clas="firstName">Bipin</span>
+            <span class="birthDate text-right">1981</span>
+          </div>
         </div>
       </div>
     </div>
@@ -75,5 +130,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/index.app.js"></script>
   </body>
 </html>
