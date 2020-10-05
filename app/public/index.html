@@ -106,18 +106,10 @@
         </div>
         <div class="col cardPane cardPaneRight">
           <h3>Waiting patients</h3>
-          <div class="patientCard triageCritical" data-patient_id="3" data-visit_id="520">
-            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
-            <span class="birthDate text-right">1978</span>
-          </div>
-          <div class="patientCard triageUrgent" data-patient_id="1" data-visit_id="501">
-            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
-            <span class="birthDate float-right">1980</span>
-          </div>
-          <div class="patientCard triageMinor" data-patient_id="3" data-visit_id="520">
-            <span class="lastName">Prabhakar</span>, <span clas="firstName">Bipin</span>
-            <span class="birthDate text-right">1981</span>
-          </div>
+          <div class="patientCard triageCritical" v-for="visit in visitList" data-visit_id="520">
+            <span class="lastName">{{ visit.lastName }}</span>,
+            <span clas="firstName">{{ visit.firstName }}</span>
+            <span class="birthDate text-right">{{ visit.DOB }}</span>
         </div>
       </div>
     </div>
