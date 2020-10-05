@@ -1,0 +1,67 @@
+html,
+body {
+  background-color: white;
+  color: #333;
+}
+
+nav,
+.navbar {
+  background-color: rgb(20,40,180);
+  color: #eee;
+}
+
+.navbar a.navbar-brand,
+.navbar a.nav-link,
+.navbar a.nav-link:visited {
+  color: #eee;
+}
+
+.navbar a.nav-link:hover {
+  background-color: rgb(50,80,220);
+  color: #fff;
+}
+
+
+.cardPane {
+  background-color: #eee;
+  color: black;
+}
+
+.cardPaneLeft{
+  border-right: 1px solid rgb(77,55,41);
+}
+
+.cardPaneRight{
+  border-left: 1px solid rgb(77,55,41);
+}
+
+.patientCard {
+  margin: 4px;
+  padding: 4px 8px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background-color: white;
+}
+.patientCard .birthDate{
+  float: right;
+}
+
+.patientCard .lastName {
+  font-weight:bold;
+}
+
+.triageCritical {
+  border: 5px solid #C00;
+  background-color: #fee;
+  margin: 8px 4px;
+}
+
+.triageUrgent {
+  border: 3px solid rgb(209,140,76);
+  margin: 8px 4px;
+}
+
+.triageMinor {
+  border: 3px solid rgb(50,80,220);
+  margin: 8px 4px;
+}
