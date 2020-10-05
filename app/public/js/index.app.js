@@ -24,19 +24,24 @@ var app = new Vue({
       }
     },
     handleNewPtForm( evt ){
-      evt.preventDefault();  // Redundant w/ Vue's submit.prevent
-      /*
-      //TODO: Hook to API
-      fetch( url, {
-       method: "post",
-       data: data
+      // evt.preventDefault();  // Redundant w/ Vue's submit.prevent
+
+      fetch('api/records/post.php', {
+        method:'POST',
+        body: JSON.stringify(this.newPtForm),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
       })
-      */
+      .then( response => response.json() )
+      .then( json => {
+        console.log("Returned from post:", json);
+        // TODO: test a result was returned!
+        this.ptList.push(json[0]);
+      });
 
-      console.log("Creating...!");
+      console.log("Creating (POSTing)...!");
       console.log(this.newPtForm);
-
-      this.ptList.push(this.newPtForm);
 
       this.newPtForm = this.newPtData();
     },
@@ -49,7 +54,7 @@ var app = new Vue({
     }
   },
   created() {
-    fetch("dummy/pt-list.php")
+    fetch("api/records/")
     .then( response => response.json() )
     .then( json => {
       this.ptList = json;

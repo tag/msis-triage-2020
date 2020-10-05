@@ -10,6 +10,7 @@ $sql = 'SELECT * FROM Patient';
 $vars = [];
 
 if (isset($_GET['guid'])) {
+  // This is an example of a parameterized query
   $sql = 'SELECT * FROM Patient WHERE patientGuid = ?';
   $vars = [ $_GET['guid'] ];
 }
