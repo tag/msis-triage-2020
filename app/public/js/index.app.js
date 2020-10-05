@@ -23,32 +23,27 @@ var app = new Vue({
         sexAtBirth: ""
       }
     },
-    handleNewPtForm( evt ){
+    handleNewPtForm( evt ) {
       // evt.preventDefault();  // Redundant w/ Vue's submit.prevent
-      // /*
-      // Validate the data!!!
 
-      //Line 32, 43, 46
+      // TODO: Validate the data!
 
-      //TODO: Hook to API
-      fetch('api/recordes/post.php', {
-       method: "post",
-       data: JSON.stringify(this.newPtForm),
-       headers: {
-         "Content-Type": "application/json; charset=utf-8"
-       }
+      fetch('api/records/post.php', {
+        method:'POST',
+        body: JSON.stringify(this.newPtForm),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
       })
       .then( response => response.json() )
-      .then ( json => {
-        console.log("returned from post:", json);
-
+      .then( json => {
+        console.log("Returned from post:", json);
+        // TODO: test a result was returned!
         this.ptList.push(json[0]);
       });
 
-      console.log("Creating...!");
+      console.log("Creating (POSTing)...!");
       console.log(this.newPtForm);
-
-      this.ptList.push(this.newPtForm);
 
       this.newPtForm = this.newPtData();
     },

@@ -10,15 +10,14 @@ $sql = 'SELECT * FROM Patient';
 $vars = [];
 
 if (isset($_GET['guid'])) {
+  // This is an example of a parameterized query
   $sql = 'SELECT * FROM Patient WHERE patientGuid = ?';
   $vars = [ $_GET['guid'] ];
 }
 
-//Pass statement in one part; pass variable in one part; not possible to have sql injection
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-//Always returns an array
 $patients = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
