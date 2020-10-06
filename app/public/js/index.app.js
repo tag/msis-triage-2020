@@ -2,6 +2,7 @@ var app = new Vue({
   el: '#triagePage',
   data: {
     ptList: [],
+    visitList: [],
     activePt: null,
     triageForm: {
       priority: null,
@@ -63,6 +64,15 @@ var app = new Vue({
 
       console.log(json)}
     );
+
+    fetch("api/visits/")
+    .then( response => response.json() )
+    .then( json => {
+      this.visitList = json;
+
+      console.log(json)}
+    );
+
     this.newPtForm = this.newPtData();
   }
 })
