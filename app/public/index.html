@@ -34,40 +34,53 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" id="triagePage">
         <div id="cardPaneLeft" class="col cardPane cardPaneLeft">
+          <form method="post" v-on:submit.prevent="handleNewPtForm">
+            <h3>Create New Patient Record</h3>
+
+            <div class="form-group">
+            <label for="newPtFirstName">First Name</label>
+            <input type="text" v-model="newPtForm.firstName" class="form-control" id="newPtFirstName" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label for="newPtLastName">Last Name</label>
+            <input type="text" v-model="newPtForm.lastName" class="form-control" id="newPtLastName" placeholder="Doe">
+          </div>
+          <div class="form-group">
+            <label for="newPtDob">DOB</label>
+            <input type="text" v-model="newPtForm.dob" class="form-control" id="newPtDob" placeholder="2020-01-02">
+          </div>
+          <div class="form-group">
+            <label for="newPtSexAtBirth">Sex at Birth</label>
+            <select class="form-control" v-model="newPtForm.sexAtBirth" id="newPtSexAtBirth">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other/Unknown</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+
+          </form>
+
           <h3>List of all patients</h3>
-            <p>{{ message }}</p>
-            <p>{{ 1 + 2 * 3 }}</p>
-            <div class="patientCard" data-id="3">
-              <span class="lastName">{{ onePatient.lastName }}</span>,
-              <span clas="firstName">{{ onePatient.firstName }}</span>
-              <span class="birthDate text-right">{{ onePatient.dob }}</span>
-            </div>
-          <!-- <div class="patientCard" data-id="1">
-            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
-            <span class="birthDate float-right">1980</span>
+
+          <div class="patientCard" v-for="pt in ptList" v-on:click="activePt = pt">
+            <span class="lastName">{{ pt.lastName }}</span>,
+            <span clas="firstName">{{ pt.firstName }}</span>
+            <span class="birthDate float-right">{{ pt.dob }}</span>
           </div>
-          <div class="patientCard" data-id="3">
-            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
-            <span class="birthDate text-right">1978</span>
-          </div>
-          <div class="patientCard" data-id="2">
-            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
-            <span class="birthDate text-right">1981</span>
-          </div> -->
+
+          <!-- <button v-on:click="yell()">Click Me!</button> -->
         </div>
 
         <div class="col-6">
           <h1>New Visit</h1>
-          <form>
+          <form v-on:submit.prevent="handleTriageForm">
             <div class="form-group">
               <label for="ptName">Patient Name</label>
-              <select class="form-control" id="ptName">
-                <option value="1">Dayton, Keith</option>
-                <option value="2">Prabhakar, Bipin</option>
-                <option value="3">Gregory, Tom</option>
-              </select>
+              <input class="form-control" id="ptName" v-bind:value="activePtName" readonly>
+
             </div>
 
           <div class="form-group">
@@ -77,7 +90,7 @@
 
           <div class="form-group">
             <label for="visitPriority">Priority</label>
-            <select class="form-control" id="visitPriority">
+            <select class="form-control" id="visitPriority" v-model="triageForm.priority">
               <option value="30">Critical</option>
               <option value="20">Urgent</option>
               <option value="10">Non-urgent</option>
@@ -85,7 +98,7 @@
           </div>
           <div class="form-group">
             <label for="visitSymptoms">Patient Symptoms</label>
-            <textarea class="form-control" id="visitSymptoms" rows="5"></textarea>
+            <textarea class="form-control" id="visitSymptoms" rows="5" v-model="triageForm.symptoms"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -117,8 +130,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/index.app.js"></script>
-    <!-- <script src="js/data.js"></script> -->
   </body>
 </html>
