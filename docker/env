@@ -1,0 +1,12 @@
+# 1. Make sure `env` is in your `.gitignore` file
+#
+# 2. Copy this file and rename it `env`
+#
+# 3. Change the environment variables to their true values
+#
+# Do NOT ever include your *real* env in version control
+
+MYSQL_DATABASE=ds_hw5
+MYSQL_HOST=ds-hw5.cm57wmlsgxiy.us-east-1.rds.amazonaws.com
+MYSQL_USER=msis_admin
+MYSQL_PASSWORD=Bsk0061798
