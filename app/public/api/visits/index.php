@@ -6,7 +6,7 @@ require 'common.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$sql = 'SELECT * FROM PatientVisit pv, Patient p WHERE p.patientGuid = pv.patientGuid';
+$sql = 'SELECT * FROM PatientVisit pv, Patient p WHERE pv.patientGuid = p.patientGuid';
 $vars = [];
 
 // if (isset($_GET['guid'])) {
