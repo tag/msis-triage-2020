@@ -24,6 +24,26 @@ var app = new Vue({
         sexAtBirth: ""
       }
     },
+    dateSince(d) {
+      // Uses Luxon date API (see comment in index.html file)
+      return moment.utc(d).calendar();
+    },
+    age(d) {
+      return moment().diff(moment(d), 'years');
+    },
+    /**
+     * Given a priority, returns triage class
+     * or "" if not found
+     **/
+    priorityClass(p) {
+      const priorityClass = {
+        low: "triageMinor",
+        medium: "triageUrgent",
+        high: "triageCritical"
+      };
+
+      return p in priorityClass ? priorityClass[p] : "";
+    },
     handleNewPtForm( evt ) {
       // evt.preventDefault();  // Redundant w/ Vue's submit.prevent
 
