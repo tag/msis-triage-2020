@@ -2,6 +2,7 @@ var app = new Vue({
   el: '#triagePage',
   data: {
     ptList: [],
+    visitList: [],
     activePt: null,
     triageForm: {
       priority: null,
@@ -22,6 +23,26 @@ var app = new Vue({
         dob: "",
         sexAtBirth: ""
       }
+    },
+    dateSince(d) {
+      // Uses Luxon date API (see comment in index.html file)
+      return moment.utc(d).calendar();
+    },
+    age(d) {
+      return moment().diff(moment(d), 'years');
+    },
+    /**
+     * Given a priority, returns triage class
+     * or "" if not found
+     **/
+    priorityClass(p) {
+      const priorityClass = {
+        low: "triageMinor",
+        medium: "triageUrgent",
+        high: "triageCritical"
+      };
+
+      return p in priorityClass ? priorityClass[p] : "";
     },
     handleNewPtForm( evt ) {
       // evt.preventDefault();  // Redundant w/ Vue's submit.prevent
@@ -63,6 +84,15 @@ var app = new Vue({
 
       console.log(json)}
     );
+
+    fetch("api/visits/")
+    .then( response => response.json() )
+    .then( json => {
+      this.visitList = json;
+
+      console.log(json)}
+    );
+
     this.newPtForm = this.newPtData();
   }
 })

@@ -106,18 +106,14 @@
         </div>
         <div class="col cardPane cardPaneRight">
           <h3>Waiting patients</h3>
-          <div class="patientCard triageCritical" data-patient_id="3" data-visit_id="520">
-            <span class="lastName">Gregory</span>, <span clas="firstName">Tom</span>
-            <span class="birthDate text-right">1978</span>
+          <div v-for="visit in visitList" v-bind:class="'patientCard ' + priorityClass(visit.priority)" v-bind:data-patient_guid="visit.patientGuid" :data-visit_id="visit.visitId">
+            (<span class="lastName">{{ visit.sexAtBirth }}</span>
+            <span class="lastName">{{ age(visit.dob) }}</span>)
+            <span class="lastName">{{ visit.lastName }}</span>,
+            <span clas="firstName">{{ visit.firstName }}</span><br />
+            <span class="text-right">Arrived {{ dateSince(visit.visitDateUtc) }}</span>
           </div>
-          <div class="patientCard triageUrgent" data-patient_id="1" data-visit_id="501">
-            <span class="lastName">Dayton</span>, <span clas="firstName">Keith</span>
-            <span class="birthDate float-right">1980</span>
-          </div>
-          <div class="patientCard triageMinor" data-patient_id="3" data-visit_id="520">
-            <span class="lastName">Prabhakar</span>, <span clas="firstName">Bipin</span>
-            <span class="birthDate text-right">1981</span>
-          </div>
+
         </div>
       </div>
     </div>
@@ -130,6 +126,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/index.app.js"></script>
