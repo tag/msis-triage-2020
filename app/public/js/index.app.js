@@ -30,7 +30,7 @@ var app = new Vue({
     },
     dateSince(d) {
       // Uses Luxon date API (see comment in index.html file)
-      return moment.utc(d).calendar();
+      return moment.utc(d).local().calendar();
     },
     age(d) {
       return moment().diff(moment(d), 'years');
