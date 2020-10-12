@@ -1,5 +1,6 @@
 USE msis_triage;
 
+DROP TABLE IF EXISTS Patient;
 CREATE TABLE Patient (
     patientGuid VARCHAR(64) PRIMARY KEY,
     firstName VARCHAR(64),
@@ -14,13 +15,13 @@ INSERT INTO Patient (patientGuid, firstName, lastName, dob, sexAtBirth) VALUES
 ("SOME-UNIQUE-ABCDE1", "J", "Doe", "1950-00-00",  ""),
 ("SOME-DUMMY-DATA", "Pepper", "Potts", "1990-01-31",  "F");
 
+DROP TABLE IF EXISTS PatientVisit;
 CREATE TABLE PatientVisit (
     visitId INTEGER PRIMARY KEY AUTO_INCREMENT,
     patientGuid VARCHAR(64) UNIQUE,
     visitDescription TEXT NOT NULL,
     visitDateUtc DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     priority ENUM('low', 'medium', 'high') NOT NULL DEFAULT 'low'
-
 );
 
 INSERT INTO PatientVisit (visitId, patientGuid, visitDescription) VALUES
